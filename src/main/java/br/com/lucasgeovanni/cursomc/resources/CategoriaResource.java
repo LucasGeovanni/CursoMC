@@ -16,12 +16,12 @@ public class CategoriaResource {
 
 	@Autowired
 	private CategoriaService _categoriaService;
-
+	//ResponseEntity serve para retornar uma resposta http valida
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
 
 		Categoria categoria = _categoriaService.buscar(id);
-
+		
 		return ResponseEntity.ok(categoria);
 	}
 

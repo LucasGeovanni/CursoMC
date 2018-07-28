@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Produto implements Serializable {
 
@@ -22,13 +24,16 @@ public class Produto implements Serializable {
 	private Integer id;
 	private String nome;
 	private Double preco;
-
+	
+	//@JoinTable serve para mapear o relacionamento de n para n entre produto e categoria
+	//@JoinColumn indica o foreign key das colunas produto_id e categoria_id de suas respectivas tabelas
+	//Para tratar referencia ciclica na serialização Json usamos o @JsonBackReference, pois a Categoria ja serializou os produtos
+	@JsonBackReference
 	@ManyToMany
 	@JoinTable(name = "PRODUTO_CATEGORIA",
 				joinColumns = @JoinColumn(name = "produto_id"),
 				inverseJoinColumns = @JoinColumn(name = "categoria_id")
 	)
-
 	private List<Categoria> categorias = new ArrayList<>();
 
 	public Produto() {

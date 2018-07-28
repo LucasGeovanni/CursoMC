@@ -13,8 +13,9 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 import br.com.lucasgeovanni.cursomc.domain.enums.EstadoPagamentoEnum;
+
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Pagamento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -29,7 +30,6 @@ public abstract class Pagamento implements Serializable {
 	private Pedido pedido;
 
 	public Pagamento() {
-
 	}
 
 	public Pagamento(Integer id, EstadoPagamentoEnum estado, Pedido pedido) {

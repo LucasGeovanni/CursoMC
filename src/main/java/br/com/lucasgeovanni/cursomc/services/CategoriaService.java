@@ -1,5 +1,6 @@
 package br.com.lucasgeovanni.cursomc.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,18 +41,22 @@ public class CategoriaService {
 		find(categoria.getId());
 		return _categoriaRepository.save(categoria);
 	}
-	
+
 	public void delete(Integer id) {
 		find(id);
 		try {
 			_categoriaRepository.deleteById(id);
 
-		}
-		catch (DataIntegrityViolationException e) {
+		} catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos");
 		}
-	}                                                                                                                                                                                                                                                    
+	}
+	
+	public List<Categoria> findAll() {
+		
+		return _categoriaRepository.findAll();
 
-
+	}
+	
 
 }

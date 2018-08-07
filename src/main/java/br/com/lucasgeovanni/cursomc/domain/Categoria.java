@@ -23,7 +23,6 @@ public class Categoria implements Serializable {
 	
 	//mappedBy indica que mapeou o relacionamento
 	//Para tratar referencia ciclica na serialização Json usamos o @JsonManagedReference
-	@JsonManagedReference
 	@ManyToMany(mappedBy="categorias")
 	private List<Produto> produtos = new ArrayList<>();
 

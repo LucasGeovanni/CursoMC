@@ -21,7 +21,7 @@ public class ClienteService {
 	// Na versão 2.0x do spring-boot: para buscar um objeto pelo id se usa o
 	// findById(id) e se retorna um objeto Optional ;
 
-	public Cliente buscar(Integer Id) {
+	public Cliente find(Integer Id) {
 
 		Optional<Cliente> cliente = _clienteRepository.findById(Id);
 

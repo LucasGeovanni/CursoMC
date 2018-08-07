@@ -25,20 +25,38 @@ public class CategoriaResource {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
 
-		Categoria categoria = _categoriaService.buscar(id);
+		Categoria categoria = _categoriaService.find(id);
 
 		return ResponseEntity.ok(categoria);
 	}
+
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody Categoria categoria) {
 
 		categoria = _categoriaService.insert(categoria);
-		//URI objeto que devolve o path que sera inseriado o novo objeto
+		// URI objeto que devolve o path que sera inseriado o novo objeto
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoria.getId())
 				.toUri();
 
 		return ResponseEntity.created(uri).build();
 
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Categoria categoria, @PathVariable Integer id) {
+
+		categoria.setId(id);
+		categoria = _categoriaService.update(categoria);
+
+		return ResponseEntity.noContent().build();
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(@PathVariable Integer id) {
+
+		_categoriaService.delete(id);
+
+		return ResponseEntity.noContent().build();
 	}
 
 }

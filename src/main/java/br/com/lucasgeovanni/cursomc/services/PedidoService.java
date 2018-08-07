@@ -21,7 +21,7 @@ public class PedidoService {
 	// Na versão 2.0x do spring-boot: para buscar um objeto pelo id se usa o
 	// findById(id) e se retorna um objeto Optional ;
 
-	public Pedido buscar(Integer Id) {
+	public Pedido find(Integer Id) {
 
 		Optional<Pedido> Pedido = _pedidoRepository.findById(Id);
 
